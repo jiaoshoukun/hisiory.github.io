@@ -13,6 +13,17 @@
     
 
     
+        <meta name="description" content="2019-07-17 ssh安全视频笔记
+接下来所讲的是关于linux、centos靶机
+网络配置
+DNS配置：vi /etc/resolv.conf 
+
+配置nameserver:202.102.134.68
+
+现在ping一下外网，发现可以ping通了
+
+WEB很难实现批量攻击，SSH比较容易实">
+    
 
     <!--Author-->
     
@@ -21,10 +32,21 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Hexo">
+        <meta property="og:title" content="2019-07-17 ssh安全视频笔记">
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="2019-07-17 ssh安全视频笔记
+接下来所讲的是关于linux、centos靶机
+网络配置
+DNS配置：vi /etc/resolv.conf 
+
+配置nameserver:202.102.134.68
+
+现在ping一下外网，发现可以ping通了
+
+WEB很难实现批量攻击，SSH比较容易实">
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +54,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -51,7 +73,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2019 - Hexo</title>
+    <title>2019-07-17 ssh安全视频笔记 - Hexo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -153,75 +175,101 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2019</h1>
+                <div class="post-heading">
+                    <h1>2019-07-17 ssh安全视频笔记</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-07-17
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/07/17/07-17ssh安全视频笔记/">
-        <h1 class="post-title archive">
-            2019-07-17 ssh安全视频笔记
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-17
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>2019-07-17 ssh安全视频笔记</p>
+<p>接下来所讲的是关于linux、centos靶机</p>
+<p>网络配置</p>
+<p>DNS配置：vi /etc/resolv.conf </p>
+<blockquote>
+<p>配置nameserver:202.102.134.68</p>
+</blockquote>
+<p>现在ping一下外网，发现可以ping通了</p>
+<hr>
+<p>WEB很难实现批量攻击，SSH比较容易实现批量攻击</p>
+<p>ssh(secure shell,安全shell)协议，主要用于远程登录，默认使用TCP22端口。</p>
+<p>ssh的最大特点是可以吧所有传输的数据进行加密。</p>
+<p>ssh的数据传输是经过压缩的，可以加快传输速度。</p>
+<p>扫描存活的ssh端口</p>
+<blockquote>
+<p>nmap -sS -p22 -oG - 192.168.1/24</p>
+</blockquote>
+<p>#-oG - #是人性化输出，-oG输出结果会自动保存，后面加-是不保存的意思</p>
+<blockquote>
+<p>nmap -sV 192.168.1/24 </p>
+</blockquote>
+<p>#版本扫描</p>
+<blockquote>
+<p>nmap -sS -p22 -oG - 192.168.1/24 | grep open </p>
+</blockquote>
+<p>#“| grep open”输出结果只要开放22端口</p>
+<blockquote>
+<p>hydra -l root -p 123 -f</p>
+</blockquote>
+<p>#九头蛇暴力破解，-l加用户名 -p加密码；-L加用户字典 -P加密码字典；-f:成功破解出一个账号密码后停止破解</p>
+<p>##vi：可编译字符文本框，快捷键</p>
+<blockquote>
+<ol>
+<li>：set nu 给配置文件标号 2. gg:返回顶部 3.G:配置文件的最后一行 4.23G：快速跳转到23行 5./Port:从当前光标所在位置往下查找Port 6.yy复制 p粘贴</li>
+</ol>
+</blockquote>
+<p>##ssh加固</p>
+<blockquote>
+<p>vi /etc/ssh/sshd_config #进入ssh服务的配置文件,在文件最后一行添加allowusers <a href="mailto:student@192.168.1.1" target="_blank" rel="noopener">student@192.168.1.1</a></p>
+</blockquote>
+<p>#添加白名单，只允许用student用户在192.168.1.1这台攻击机登录本台靶机，其他攻击机都无法连接这台靶机</p>
+<p>#1.ESC.可以把上一次输入的文件路径粘贴过来 2.tty命令：可以查看终端类型，pts:远程登录，tty:本地登录 3.rpm -qa | grep ssh:查看关于ssh的软件包 4.dirb:<a href="http://172.16.1.101:35337" target="_blank" rel="noopener">http://172.16.1.101:35337</a> #扫描web目录,如果扫描出来有rebots.txt可疑文件，建议查看一下里面或许有需要的东西。</p>
+<p>#5. .ssh #如果本台靶机通过ssh连接过别人会产生.ssh，该文件下会有秘钥</p>
+<pre><code>7/18/2019 7:32:20 AM </code></pre>
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2019/07/07/明教教主BT5视频教程学习笔记(转载)/">
-        <h1 class="post-title archive">
-            明教教主BT5视频教程学习笔记(转载)
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-07
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-                <div class="post-preview">
-    <a href="/2019/06/18/WEB进阶-实战2注入/">
-        <h1 class="post-title archive">
-            WEB实战注入
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-06-18
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
